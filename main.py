@@ -1,4 +1,19 @@
 import datetime
+from PySide6.QtWidgets import QApplication, QWidget, QPushButton
+
+class AppWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setup()
+
+    def setup(self):
+        quit_btn = QPushButton('Quit', self)
+        quit_btn.move(320, 570)
+
+        self.setFixedSize(400, 600)
+        self.setWindowTitle("Test Window")
+
+        self.show()
 
 def calculate_procentage(items):
     procentage = items * 0.025
@@ -30,7 +45,6 @@ def get_items_count():
             return result
         except ValueError:
             print("Ilosc sztuk jest bledna! Sprobuj ponownie!")
-    
 
 def display_results(result, date_after_84):
     print(f"Data zdania: {date_after_84}\nIlosc sztuk do zdania: {result}")
@@ -38,7 +52,13 @@ def display_results(result, date_after_84):
 def main():
     date_after_84 = get_date()
     result = get_items_count()
+    print('------------------------------')
     display_results(result, date_after_84)
 
 if __name__ == "__main__":
-    main()
+    #main()
+
+    app = QApplication([])
+    app_window = AppWindow()
+
+    app.exec()
