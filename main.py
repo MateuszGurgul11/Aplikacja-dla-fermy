@@ -1,44 +1,61 @@
 import datetime
+from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QDateEdit, QLineEdit
 
-def calculate_procentage(items):
-    procentage = items * 0.025
-    items -= procentage
-    return items
+class AppWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setup()
 
-def get_date():
-    while True:
-        date_input = input("Wprowadz date wstawienia oddzielona '-' [rrrr, mm, dd]: ")
+    def setup(self):
+        self.date_label = QLabel("Data wstawienia:", self)
+        self.date_input = QDateEdit(self)
+        self.date_input.setCalendarPopup(True)  # Umożliwia wybór daty z kalendarza
+        
+        self.qty_label = QLabel("Ilość sztuk:", self)
+        self.qty_input = QLineEdit(self)
+
+        self.result_label = QLabel("Wynik:", self)
+        self.result_display = QLabel("", self)
+
+        calculate_btn = QPushButton('Oblicz', self)
+        calculate_btn.clicked.connect(self.calculate_and_display)
+
+        quit_btn = QPushButton('Quit', self)
+        quit_btn.clicked.connect(QApplication.instance().quit)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.date_label)
+        layout.addWidget(self.date_input)
+        layout.addWidget(self.qty_label)
+        layout.addWidget(self.qty_input)
+        layout.addWidget(self.result_label)
+        layout.addWidget(self.result_display)
+        layout.addWidget(calculate_btn)
+        layout.addWidget(quit_btn)
+
+        self.setLayout(layout)
+        self.setWindowTitle("Prosty Program Okienkowy")
+        self.setFixedSize(400, 600)
+
+    def calculate_and_display(self):
+        date = self.date_input.date().toPython()
+        qty_str = self.qty_input.text()
+
         try:
-            year, month, day = map(int, date_input.split('-'))
-            date = datetime.date(year, month, day)
-
-            date_after_84 = date + datetime.timedelta(days = 84)
-            print(f"Data wstawienia: {date}")
-
-            return date_after_84
-
+            date_after_84 = date + datetime.timedelta(days=84)
+            qty = int(qty_str)
+            result = self.calculate_percentage(qty)
+            self.result_display.setText(f"Data zdania: {date_after_84}\nIlość sztuk do zdania: {result}")
         except ValueError:
-            print("Wprowadzona data nie jest poprawna! Sprobuj ponownie")
+            self.result_display.setText("Nieprawidłowe dane wejściowe")
 
-def get_items_count():
-    while True:
-        items = input("Podaj ilosc sztuk do wstawienia:  ")
-        try: 
-            items = int(items)
-            result = calculate_procentage(items)
-            print(f"Ilosc sztuk do wstawienia: {items}")
-            return result
-        except ValueError:
-            print("Ilosc sztuk jest bledna! Sprobuj ponownie!")
-    
-
-def display_results(result, date_after_84):
-    print(f"Data zdania: {date_after_84}\nIlosc sztuk do zdania: {result}")
-
-def main():
-    date_after_84 = get_date()
-    result = get_items_count()
-    display_results(result, date_after_84)
+    def calculate_percentage(self, items):
+        percentage = items * 0.025
+        items -= percentage
+        return round(items)
 
 if __name__ == "__main__":
-    main()
+    app = QApplication([])
+    app_window = AppWindow()
+    app_window.show()
+    app.exec()
