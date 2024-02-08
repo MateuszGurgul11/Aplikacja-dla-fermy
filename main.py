@@ -9,7 +9,7 @@ class AppWindow(QWidget):
     def setup(self):
         self.date_label = QLabel("Data wstawienia:", self)
         self.date_input = QDateEdit(self)
-        self.date_input.setCalendarPopup(True)  # Umożliwia wybór daty z kalendarza
+        self.date_input.setCalendarPopup(True)
         
         self.qty_label = QLabel("Ilość sztuk:", self)
         self.qty_input = QLineEdit(self)
@@ -34,7 +34,7 @@ class AppWindow(QWidget):
         layout.addWidget(quit_btn)
 
         self.setLayout(layout)
-        self.setWindowTitle("Prosty Program Okienkowy")
+        self.setWindowTitle("Kogucik")
         self.setFixedSize(400, 600)
 
     def calculate_and_display(self):
