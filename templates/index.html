@@ -19,9 +19,13 @@
             <div class="card">
                 <form action="/" method="post">
                     <h1>Dane</h1>
+                    <label for="breader">Chodowca</label>
+                    <input type="text" name="breader" id="breader">
+                    
+                    <hr>
+
                     <label for="date">Data wstawienia piskląt</label>
                     <input type="date" id="date" name="date" required class="form_input">
-                    <p>Termin uboju kogutów <b>{{ target_date }}</b></p>
 
                     <hr>
 
@@ -45,6 +49,18 @@
                         <form action="/generate_pdf" method="post">
                             <h2>Podsumowanie</h2>
                             <table>
+                                <tr>
+                                    <th>Chodowca</th>
+                                    <td>{{ breader }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data wstawienia</th>
+                                    <td>{{ date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Termin uboju kogutów</th>
+                                    <td>{{ target_date }}</td>
+                                </tr>
                                 <tr>
                                     <th>Ilość sztuk wstawionych</th>
                                     <td>{{ amount }}</td>

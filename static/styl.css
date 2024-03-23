@@ -1,3 +1,5 @@
+/* styl.css */
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -52,7 +54,7 @@ label {
     font-weight: bold;
 }
 
-.form_input {
+.form_input, #breader {
     border: 2px solid #333;
     border-radius: 5px;
     padding: 10px;
