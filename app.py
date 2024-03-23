@@ -1,19 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response, redirect, url_for
 from datetime import datetime, timedelta
+import pdfkit
+import functions
 
 app = Flask(__name__)
-
-def calculation_percent(amount, downed):
-    percent = (downed / amount) * 100
-    return percent
-
-def calculation_amount(amount, downed):
-    downed_amount = amount - downed
-    return downed_amount
-
-def feed_amount(percent, feed):
-    feed_waste = feed / percent
-    return feed_waste
 
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
@@ -21,14 +11,15 @@ def homepage():
         amount = int(request.form['amount'])
         downed = int(request.form['downed'])
         feed = float(request.form['feed'])
-        downed_amount = calculation_amount(amount, downed)
-        percent = calculation_percent(amount, downed)
-        feed_waste = feed_amount(percent, feed)
-        feed_waste = round(feed_waste, 2)
+
+        downed_amount = functions.calculation_amount(amount, downed)
+        percent = functions.calculation_percent(amount, downed)
+        feed_waste = functions.feed_amount(feed, downed_amount)
+
         if 'date' in request.form:
             selected_date = datetime.strptime(request.form['date'], '%Y-%m-%d')
             target_date = selected_date + timedelta(days=84)
-            return render_template("index.html", downed_amount=downed_amount, percent=percent, feed_waste=feed_waste, target_date=target_date.strftime('%Y-%m-%d'))
+            return render_template("index.html", downed_amount=downed_amount, percent=percent, feed_waste=feed_waste, target_date=target_date.strftime('%Y-%m-%d'), amount=amount, feed=feed, downed=downed)
         else:
             return render_template("index.html", downed_amount=downed_amount, percent=percent, feed_waste=feed_waste)
     return render_template("index.html")

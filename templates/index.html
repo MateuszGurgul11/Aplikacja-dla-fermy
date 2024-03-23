@@ -7,11 +7,12 @@
     <title>Koguciki</title>
 </head>
 <body>
-    <header>
+    {% block content %}
+    <!-- <header>
         <div class="logo">
             <img src="/static/logo.png" alt="Koguciki Logo">
         </div>
-    </header>
+    </header> -->
 
     <main>
         <div class="container">
@@ -41,21 +42,36 @@
 
                     {% if percent and feed_waste and target_date and downed_amount %}
                     <div class="results">
-                        <h2>Podsumowanie</h2>
-                        <table>
-                            <tr>
-                                <th>Ilość sztuk do zdania</th>
-                                <td>{{ downed_amount }}</td>
-                            </tr>
-                            <tr>
-                                <th>Śmiertelność</th>
-                                <td>{{ percent }}%</td>
-                            </tr>
-                            <tr>
-                                <th>Ilość paszy na sztukę</th>
-                                <td>{{ feed_waste }}kg</td>
-                            </tr>
-                        </table>
+                        <form action="/generate_pdf" method="post">
+                            <h2>Podsumowanie</h2>
+                            <table>
+                                <tr>
+                                    <th>Ilość sztuk wstawionych</th>
+                                    <td>{{ amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ilość sztuk do zdania</th>
+                                    <td>{{ downed_amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ilość upadków</th>
+                                    <td>{{ downed }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Śmiertelność</th>
+                                    <td>{{ percent }}%</td>
+                                </tr>
+                                <tr>
+                                    <th>Ilość zużytej paszy</th>
+                                    <td>{{ feed }}kg</td>
+                                </tr>
+                                <tr>
+                                    <th>Ilość paszy na sztukę</th>
+                                    <td>{{ feed_waste }}kg</td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Pobierz PDF" class="submit_button">
+                        </form>
                     </div>
                 {% endif %}
                 </form>
@@ -74,5 +90,6 @@
             <a href="www.linkedin.com/in/mateusz-gurgul-b04465292"><img src="/static/linkedin.png" alt="Linkedin"></a>
         </div>
     </footer>
+    {% endblock %}
 </body>
 </html>
