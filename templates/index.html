@@ -19,7 +19,7 @@
             <div class="card">
                 <form action="/" method="post">
                     <h1>Dane</h1>
-                    <label for="breader">Chodowca</label>
+                    <label for="breader">Hodowca</label>
                     <input type="text" name="breader" id="breader">
                     
                     <hr>
@@ -46,11 +46,11 @@
 
                     {% if percent and feed_waste and target_date and downed_amount %}
                     <div class="results">
-                        <form action="/generate_pdf" method="post">
+                        <form method="post">
                             <h2>Podsumowanie</h2>
                             <table>
                                 <tr>
-                                    <th>Chodowca</th>
+                                    <th>Hodowca</th>
                                     <td>{{ breader }}</td>
                                 </tr>
                                 <tr>
@@ -86,7 +86,7 @@
                                     <td>{{ feed_waste }}kg</td>
                                 </tr>
                             </table>
-                            <input type="submit" value="Pobierz PDF" class="submit_button">
+                            <!-- <button id="pdf_button" type="button">Pobierz PDF</button>                             -->
                         </form>
                     </div>
                 {% endif %}
@@ -102,8 +102,8 @@
             <p>Email: mateusz.gurgul.2003@gmail.com</p>
         </div>
         <div class="social_media">
-            <a href="https://github.com/MateuszGurgul11"><img src="/static/github.png" alt="Github"></a>
-            <a href="www.linkedin.com/in/mateusz-gurgul-b04465292"><img src="/static/linkedin.png" alt="Linkedin"></a>
+            <a href="https://github.com/MateuszGurgul11"><img src="/img/github.png" alt="Github"></a>
+            <a href="www.linkedin.com/in/mateusz-gurgul-b04465292"><img src="/img/linkedin.png" alt="Linkedin"></a>
         </div>
     </footer>
     {% endblock %}
