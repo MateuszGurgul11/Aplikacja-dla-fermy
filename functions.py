@@ -1,11 +1,16 @@
 import csv
+from datetime import datetime
 
 def save_summary_to_csv(summary_data, file_path):
     with open(file_path, "w", newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Kategoria', 'Wartość'])
+        writer.writerow(['Kategoria', 'Kogucik'])
         for key, value in summary_data.items():
-            writer.writerow([key, value])
+            if isinstance(value, datetime):
+                formated_date = value.strftime('%Y-%m-%d')
+                writer.writerow([key, formated_date])
+            else:
+                writer.writerow([key, value])
 
 def calculation_percent(amount, downed):
     percent = (downed / amount) * 100
