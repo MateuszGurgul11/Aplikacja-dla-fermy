@@ -108,3 +108,8 @@ footer {
 .results th {
     background-color: #f2f2f2;
 }
+
+.submit_button {
+    margin-top: 30px;
+    text-decoration: none; 
+}
