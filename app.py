@@ -33,13 +33,13 @@ def homepage():
             summary_data = {
             "Hodowca" : breader,
             "Data Wstawienia" : selected_date,
-            "Termin uboju kogutów" : target_date,
-            "Ilość sztuk wstawionych" : amount,
-            "Ilość sztuk do zdania" : downed_amount,
-            "Ilość upadków" : downed,
-            "Śmiertelność" : percent,
-            "Ilość zużytej paszy" : feed,
-            "Ilość paszy na sztukę" : feed_waste
+            "Termin uboju kogutow" : target_date,
+            "Ilosc sztuk wstawionych" : amount,
+            "Ilosc sztuk do zdania" : downed_amount,
+            "Ilosc upadkow" : downed,
+            "Smiertelnosc" : percent,
+            "Ilosc zuzytej paszy" : feed,
+            "Ilosc paszy na sztuke" : feed_waste
             }
 
             file_path = 'summary.csv'

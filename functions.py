@@ -3,7 +3,7 @@ from datetime import datetime
 
 def save_summary_to_csv(summary_data, file_path):
     with open(file_path, "w", newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter=";")
         writer.writerow(['Kategoria', 'Kogucik'])
         for key, value in summary_data.items():
             if isinstance(value, datetime):
