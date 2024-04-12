@@ -27,4 +27,3 @@ Strona jest już opublikowana i dostępna pod adresem [Koguciki](https://kogutki
 - `static/`: Folder zawierający pliki statyczne, takie jak CSS i obrazy.
 
 Aplikacja została zaprojektowana, zbudowana i zaakceptowana przez klienta, spełniając wszystkie oczekiwania w zakresie funkcjonalności i wydajności. Została opublikowana i jest dostępna dla użytkowników.
-"""
