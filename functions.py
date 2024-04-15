@@ -8,9 +8,9 @@ def save_summary_to_csv(summary_data, file_path):
         for key, value in summary_data.items():
             if isinstance(value, datetime):
                 formated_date = value.strftime('%Y-%m-%d')
-                writer.writerow([key, formated_date])
+                writer.writerow([key, f'="{formated_date}"'])
             else:
-                writer.writerow([key, value])
+                writer.writerow([key, f'="{value}"'])
 
 def calculation_percent(amount, downed):
     percent = (downed / amount) * 100
