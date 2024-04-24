@@ -8,7 +8,6 @@ Aplikacja "Koguciki" jest projektem komercyjnym zaprojektowanym na zlecenie klie
 - Jinja2
 - CSS
 - Gunicorn (do wdrożenia na Heroku)
-- Zewnętrzne API oraz lokalne bazy danych mogą być również wykorzystywane (nie zostały szczegółowo opisane w dostarczonych plikach).
 
 ## Strona dostępna online:
 Strona jest już opublikowana i dostępna pod adresem [Koguciki](https://kogutki-f05ac1087282.herokuapp.com/).
